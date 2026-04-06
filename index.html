@@ -1,0 +1,1054 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Invendo AI Campus — College-to-Career AI Program</title>
+    <meta name="description"
+        content="2-Day College Workshop → 3-Month Hybrid Program → Live Office Project → Placement Assistance. For engineering students. For principals, HODs, placement cells." />
+
+    <!-- Tailwind (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- AOS (Animate on Scroll) -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+    <!-- Optional: Inter font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!--favicon-->
+    <link rel="icon" type="image/png" href="/logo.png">
+
+    <style>
+        :root {
+            --ring: rgba(15, 23, 42, 0.12);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+        }
+
+        /* Background blobs */
+        .blob {
+            position: absolute;
+            filter: blur(60px);
+            opacity: .35;
+            transform: translateZ(0);
+            animation: floaty 10s ease-in-out infinite;
+        }
+
+        @keyframes floaty {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(18px, -22px) scale(1.06);
+            }
+        }
+
+        /* Loader */
+        .loader-wrap {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: rgba(255, 255, 255, .85);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loader-card {
+            width: min(520px, calc(100% - 32px));
+            border: 1px solid rgba(15, 23, 42, .10);
+            background: rgba(255, 255, 255, .75);
+            box-shadow: 0 24px 80px rgba(2, 6, 23, .12);
+            border-radius: 24px;
+            padding: 22px;
+        }
+
+        .loader-bar {
+            height: 10px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, .07);
+            overflow: hidden;
+        }
+
+        .loader-bar>span {
+            display: block;
+            height: 100%;
+            width: 38%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, rgba(15, 23, 42, .85), rgba(15, 23, 42, .45));
+            animation: load 1.1s ease-in-out infinite;
+        }
+
+        @keyframes load {
+            0% {
+                transform: translateX(-130%);
+            }
+
+            50% {
+                transform: translateX(90%);
+            }
+
+            100% {
+                transform: translateX(260%);
+            }
+        }
+
+        /* Premium hover */
+        .lift {
+            transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+        }
+
+        .lift:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(2, 6, 23, .12);
+            border-color: rgba(15, 23, 42, .18);
+        }
+
+        .zoom img {
+            transition: transform .45s ease;
+        }
+
+        .zoom:hover img {
+            transform: scale(1.06);
+        }
+
+        .shine {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shine:before {
+            content: "";
+            position: absolute;
+            inset: -120% -60%;
+            transform: rotate(12deg);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .45), transparent);
+            opacity: 0;
+            transition: opacity .3s ease;
+        }
+
+        .shine:hover:before {
+            opacity: 1;
+            animation: shine 1.25s ease;
+        }
+
+        @keyframes shine {
+            from {
+                transform: translateX(-40%) rotate(12deg);
+            }
+
+            to {
+                transform: translateX(40%) rotate(12deg);
+            }
+        }
+
+        /* Glass */
+        .glass {
+            background: rgba(255, 255, 255, .65);
+            border: 1px solid rgba(15, 23, 42, .10);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Soft grid */
+        .grid-bg {
+            background-image:
+                linear-gradient(to right, rgba(15, 23, 42, .05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(15, 23, 42, .05) 1px, transparent 1px);
+            background-size: 56px 56px;
+        }
+
+        /* Reduce motion */
+        @media (prefers-reduced-motion: reduce) {
+
+            .blob,
+            .loader-bar>span {
+                animation: none !important;
+            }
+
+            .lift,
+            .zoom img {
+                transition: none !important;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900">
+
+    <!-- LOADER -->
+    <div id="loader" class="loader-wrap">
+        <div class="loader-card">
+            <div class="flex items-center gap-3">
+                <div class="h-11 w-11 rounded-2xl bg-slate-900 grid place-items-center text-white font-extrabold">IA
+                </div>
+                <div>
+                    <p class="font-bold">Invendo AI Campus</p>
+                    <p class="text-sm text-slate-600">Loading the program page…</p>
+                </div>
+            </div>
+            <div class="mt-4 loader-bar"><span></span></div>
+            <p class="mt-3 text-xs text-slate-500">Tip: Replace images with your real workshop & lab photos.</p>
+        </div>
+    </div>
+
+    <!-- Sticky top nav -->
+    <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/70 backdrop-blur">
+        <div class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+            <a href="#top" class="flex items-center gap-3 group">
+                <img src="/logo.png" alt="Invendo AI Campus Logo"
+                    class="h-10 w-10 object-cover group-hover:scale-[1.02] transition" />
+                <div class="leading-tight">
+                    <p class="font-bold">Invendo AI Campus</p>
+                    <p class="text-xs text-slate-500">Invendo AI Academy • Kadavanthara, Kochi</p>
+                </div>
+            </a>
+
+            <nav class="hidden lg:flex items-center gap-2">
+                <a class="px-3 py-2 text-sm font-semibold text-slate-700 hover:text-slate-900" href="#why">Why</a>
+                <a class="px-3 py-2 text-sm font-semibold text-slate-700 hover:text-slate-900"
+                    href="#pipeline">Pipeline</a>
+                <a class="px-3 py-2 text-sm font-semibold text-slate-700 hover:text-slate-900"
+                    href="#workshop">Workshop</a>
+                <a class="px-3 py-2 text-sm font-semibold text-slate-700 hover:text-slate-900"
+                    href="#program">3-Month</a>
+                <a class="px-3 py-2 text-sm font-semibold text-slate-700 hover:text-slate-900"
+                    href="#projects">Tracks</a>
+                <a class="px-3 py-2 text-sm font-semibold text-slate-700 hover:text-slate-900" href="#faq">FAQ</a>
+            </nav>
+
+            <div class="hidden md:flex items-center gap-2">
+                <a href="#proposal"
+                    class="shine lift px-4 py-2 rounded-2xl bg-slate-900 text-white text-sm font-bold">Request
+                    Proposal</a>
+                <a href="#students"
+                    class="lift px-4 py-2 rounded-2xl border border-slate-300 bg-white text-sm font-bold">Student
+                    Register</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="top" class="relative overflow-hidden">
+        <div class="absolute inset-0 grid-bg opacity-[0.55]"></div>
+        <div class="blob w-[520px] h-[520px] rounded-full bg-indigo-400 -top-40 -left-40"></div>
+        <div class="blob w-[520px] h-[520px] rounded-full bg-emerald-400 -bottom-40 -right-40"
+            style="animation-delay: -3s">
+        </div>
+
+        <div class="mx-auto max-w-6xl px-4 py-10 md:py-16 grid lg:grid-cols-12 gap-10 relative">
+            <!-- Left -->
+            <div class="lg:col-span-7" data-aos="fade-up" data-aos-duration="900">
+                <div
+                    class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 text-white text-xs font-semibold">
+                    <span class="h-2 w-2 rounded-full bg-white/90"></span>
+                    College-to-Career AI Program for Engineering Students
+                </div>
+
+                <h1 class="mt-5 text-4xl md:text-5xl font-extrabold tracking-tight">
+                    Bring <span class="text-slate-900">Practical AI Training</span> to Your College —
+                    <span class="text-slate-900">with a clear career pipeline</span>
+                </h1>
+
+                <p class="mt-4 text-lg text-slate-700 max-w-2xl">
+                    A proven pathway: <b>2-Day On-Campus Workshop</b> → <b>3-Month Hybrid Program</b> →
+                    <b>Live Project Training at Our Office</b> → <b>Placement Assistance</b>.
+                    Designed to impress principals/HODs and excite students with real projects and demos.
+                </p>
+
+                <!-- CTAs -->
+                <div class="mt-6 flex flex-wrap gap-3">
+                    <a href="#proposal"
+                        class="shine lift px-5 py-3 rounded-2xl bg-slate-900 text-white font-bold">Request
+                        Proposal (PDF)</a>
+                    <a href="#meeting"
+                        class="lift px-5 py-3 rounded-2xl border border-slate-300 bg-white font-bold">Schedule
+                        Meeting</a>
+                    <a href="#workshop"
+                        class="lift px-5 py-3 rounded-2xl border border-slate-300 bg-white font-bold">Invite
+                        Workshop</a>
+                    <a href="#students"
+                        class="lift px-5 py-3 rounded-2xl border border-slate-300 bg-white font-bold">Student
+                        Registration</a>
+                </div>
+
+                <!-- Trust bar -->
+                <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <div class="glass lift p-4 rounded-2xl">
+                        <p class="text-xs text-slate-500">Format</p>
+                        <p class="font-bold">Hybrid</p>
+                    </div>
+                    <div class="glass lift p-4 rounded-2xl">
+                        <p class="text-xs text-slate-500">Capstone</p>
+                        <p class="font-bold">Office Live Project</p>
+                    </div>
+                    <div class="glass lift p-4 rounded-2xl">
+                        <p class="text-xs text-slate-500">Outcome</p>
+                        <p class="font-bold">Portfolio + GitHub</p>
+                    </div>
+                    <div class="glass lift p-4 rounded-2xl">
+                        <p class="text-xs text-slate-500">Support</p>
+                        <p class="font-bold">Placement Assistance</p>
+                    </div>
+                </div>
+
+                <!-- mini “logos” row -->
+                <div class="mt-8">
+                    <p class="text-xs font-semibold text-slate-500">Trusted by colleges / placement cells (add your
+                        logos)</p>
+                    <div class="mt-3 flex flex-wrap gap-3">
+                        <div class="glass lift px-4 py-2 rounded-2xl text-sm font-semibold text-slate-600">College
+                            Partner Logo
+                        </div>
+                        <div class="glass lift px-4 py-2 rounded-2xl text-sm font-semibold text-slate-600">Dept /
+                            Placement Cell
+                        </div>
+                        <div class="glass lift px-4 py-2 rounded-2xl text-sm font-semibold text-slate-600">Industry
+                            Partner</div>
+                        <div class="glass lift px-4 py-2 rounded-2xl text-sm font-semibold text-slate-600">Hiring
+                            Network</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right (image collage + proposal card) -->
+            <div class="lg:col-span-5 space-y-4" data-aos="fade-left" data-aos-duration="900">
+                <!-- Image collage -->
+                <div class="grid grid-cols-12 gap-3">
+                    <div class="col-span-7 zoom lift rounded-3xl overflow-hidden border border-slate-200 bg-white">
+                        <img alt="Workshop photo" class="w-full h-44 object-cover"
+                            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80" />
+                    </div>
+                    <div class="col-span-5 zoom lift rounded-3xl overflow-hidden border border-slate-200 bg-white">
+                        <img alt="Lab mentoring" class="w-full h-44 object-cover"
+                            src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1200&q=80" />
+                    </div>
+                    <div class="col-span-5 zoom lift rounded-3xl overflow-hidden border border-slate-200 bg-white">
+                        <img alt="Students building" class="w-full h-40 object-cover"
+                            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80" />
+                    </div>
+                    <div class="col-span-7 zoom lift rounded-3xl overflow-hidden border border-slate-200 bg-white">
+                        <img alt="Presentation" class="w-full h-40 object-cover"
+                            src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=80" />
+                    </div>
+                </div>
+
+                <!-- Proposal card -->
+                <div class="glass lift rounded-3xl p-6">
+                    <h2 class="text-xl font-extrabold">Request College Proposal</h2>
+                    <p class="mt-2 text-sm text-slate-600">
+                        Share student count + preferred month. We’ll send a structured proposal with schedule options
+                        and
+                        deliverables.
+                    </p>
+
+                    <!-- Replace action="#" with your Tally/Google Form endpoint or backend URL -->
+                    <form id="proposal" class="mt-4 grid gap-3" action="#" method="post">
+                        <input class="px-4 py-3 rounded-2xl border border-slate-300 bg-white" placeholder="College Name"
+                            required>
+                        <input class="px-4 py-3 rounded-2xl border border-slate-300 bg-white"
+                            placeholder="Contact (Principal/HOD/Placement)" required>
+                        <div class="grid grid-cols-2 gap-3">
+                            <input class="px-4 py-3 rounded-2xl border border-slate-300 bg-white"
+                                placeholder="Phone / WhatsApp" required>
+                            <input class="px-4 py-3 rounded-2xl border border-slate-300 bg-white" placeholder="Email"
+                                required>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <input class="px-4 py-3 rounded-2xl border border-slate-300 bg-white"
+                                placeholder="Students (approx)">
+                            <input class="px-4 py-3 rounded-2xl border border-slate-300 bg-white"
+                                placeholder="Preferred Month">
+                        </div>
+                        <button class="shine lift px-4 py-3 rounded-2xl bg-slate-900 text-white font-bold">Send Proposal
+                            Request</button>
+                        <p class="text-xs text-slate-500">You can also WhatsApp us for faster coordination.</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY -->
+    <section id="why" class="mx-auto max-w-6xl px-4 py-14">
+        <div class="flex items-end justify-between gap-6 flex-wrap">
+            <div data-aos="fade-up">
+                <h2 class="text-3xl font-extrabold">Why Colleges Choose Invendo AI Campus</h2>
+                <p class="mt-2 text-slate-600 max-w-2xl">
+                    This is not a theory-only course. Students ship demos, GitHub repos, documentation, and
+                    presentation-ready
+                    projects.
+                </p>
+            </div>
+            <div class="flex gap-2" data-aos="fade-up" data-aos-delay="120">
+                <a href="#gallery"
+                    class="lift px-4 py-2 rounded-2xl border border-slate-300 bg-white font-bold text-sm">See
+                    Gallery</a>
+                <a href="#meeting"
+                    class="shine lift px-4 py-2 rounded-2xl bg-slate-900 text-white font-bold text-sm">Talk to
+                    Us</a>
+            </div>
+        </div>
+
+        <div class="mt-8 grid md:grid-cols-3 gap-4">
+            <!-- 6 cards -->
+            <div class="glass lift rounded-3xl p-6" data-aos="fade-up">
+                <p class="font-extrabold">Project-first learning</p>
+                <p class="mt-2 text-sm text-slate-600">Demos + GitHub + documentation — students build, not just attend.
+                </p>
+            </div>
+            <div class="glass lift rounded-3xl p-6" data-aos="fade-up" data-aos-delay="60">
+                <p class="font-extrabold">Hybrid, college-friendly</p>
+                <p class="mt-2 text-sm text-slate-600">Schedules can align with semester timetables and exams.</p>
+            </div>
+            <div class="glass lift rounded-3xl p-6" data-aos="fade-up" data-aos-delay="120">
+                <p class="font-extrabold">Office live project capstone</p>
+                <p class="mt-2 text-sm text-slate-600">Teams execute with milestones, reviews, and a demo day approach.
+                </p>
+            </div>
+            <div class="glass lift rounded-3xl p-6" data-aos="fade-up" data-aos-delay="180">
+                <p class="font-extrabold">Agentic AI + GenAI relevance</p>
+                <p class="mt-2 text-sm text-slate-600">Modern workflows: tools, automation, and AI apps students can
+                    show.</p>
+            </div>
+            <div class="glass lift rounded-3xl p-6" data-aos="fade-up" data-aos-delay="240">
+                <p class="font-extrabold">Transparent placement assistance</p>
+                <p class="mt-2 text-sm text-slate-600">Portfolio + mock interviews + outreach support through your
+                    hiring
+                    network.</p>
+            </div>
+            <div class="glass lift rounded-3xl p-6" data-aos="fade-up" data-aos-delay="300">
+                <p class="font-extrabold">Demo day + reports</p>
+                <p class="mt-2 text-sm text-slate-600">Optional shortlist reports and college showcase-ready
+                    deliverables.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PIPELINE -->
+    <section id="pipeline" class="mx-auto max-w-6xl px-4 py-14">
+        <div class="grid lg:grid-cols-12 gap-8 items-start">
+            <div class="lg:col-span-5" data-aos="fade-up">
+                <h2 class="text-3xl font-extrabold">The 4-Step College-to-Career Pipeline</h2>
+                <p class="mt-2 text-slate-600">
+                    Students start with a high-impact workshop and finish with a real portfolio plus interview
+                    readiness.
+                </p>
+
+                <div class="mt-6 space-y-3">
+                    <div class="glass lift rounded-3xl p-5 flex gap-3">
+                        <div
+                            class="h-10 w-10 rounded-2xl bg-slate-900 text-white grid place-items-center font-extrabold">
+                            A</div>
+                        <div>
+                            <p class="font-extrabold">2-Day On-Campus Workshop</p>
+                            <p class="text-sm text-slate-600">Hands-on intro + screening + roadmap.</p>
+                        </div>
+                    </div>
+                    <div class="glass lift rounded-3xl p-5 flex gap-3">
+                        <div
+                            class="h-10 w-10 rounded-2xl bg-slate-900 text-white grid place-items-center font-extrabold">
+                            B</div>
+                        <div>
+                            <p class="font-extrabold">3-Month Hybrid Program</p>
+                            <p class="text-sm text-slate-600">Online consistency + offline labs + assignments.</p>
+                        </div>
+                    </div>
+                    <div class="glass lift rounded-3xl p-5 flex gap-3">
+                        <div
+                            class="h-10 w-10 rounded-2xl bg-slate-900 text-white grid place-items-center font-extrabold">
+                            C</div>
+                        <div>
+                            <p class="font-extrabold">Live Project Training at Our Office</p>
+                            <p class="text-sm text-slate-600">Team execution + mentor reviews + demo day.</p>
+                        </div>
+                    </div>
+                    <div class="glass lift rounded-3xl p-5 flex gap-3">
+                        <div
+                            class="h-10 w-10 rounded-2xl bg-slate-900 text-white grid place-items-center font-extrabold">
+                            D</div>
+                        <div>
+                            <p class="font-extrabold">Placement Assistance</p>
+                            <p class="text-sm text-slate-600">Portfolio polish + mock interviews + outreach support.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-7" data-aos="fade-left">
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div class="zoom lift rounded-3xl overflow-hidden border border-slate-200 bg-white">
+                        <img class="w-full h-56 object-cover" alt="Hands-on workshop"
+                            src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80">
+                        <div class="p-5">
+                            <p class="font-extrabold">Hands-on workshop energy</p>
+                            <p class="text-sm text-slate-600 mt-1">Students leave with a mini build and a clear next
+                                step.</p>
+                        </div>
+                    </div>
+                    <div class="zoom lift rounded-3xl overflow-hidden border border-slate-200 bg-white">
+                        <img class="w-full h-56 object-cover" alt="Mentorship"
+                            src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80">
+                        <div class="p-5">
+                            <p class="font-extrabold">Mentor-led reviews</p>
+                            <p class="text-sm text-slate-600 mt-1">Code + approach + presentation. Build confidence
+                                step-by-step.</p>
+                        </div>
+                    </div>
+                    <div class="zoom lift rounded-3xl overflow-hidden border border-slate-200 bg-white">
+                        <img class="w-full h-56 object-cover" alt="Project demos"
+                            src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&w=1200&q=80">
+                        <div class="p-5">
+                            <p class="font-extrabold">Demo-ready projects</p>
+                            <p class="text-sm text-slate-600 mt-1">Real apps, dashboards, and AI workflows in a
+                                portfolio format.</p>
+                        </div>
+                    </div>
+                    <div class="zoom lift rounded-3xl overflow-hidden border border-slate-200 bg-white">
+                        <img class="w-full h-56 object-cover" alt="Presentation day"
+                            src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80">
+                        <div class="p-5">
+                            <p class="font-extrabold">Demo day + placement prep</p>
+                            <p class="text-sm text-slate-600 mt-1">Mock interviews + project storytelling + hiring
+                                support.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Animated counters -->
+                <div class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-3" data-aos="fade-up">
+                    <div class="glass lift rounded-2xl p-4 text-center">
+                        <p class="text-xs text-slate-500">Program</p>
+                        <p class="text-2xl font-extrabold"><span class="counter" data-target="3">0</span> Months</p>
+                    </div>
+                    <div class="glass lift rounded-2xl p-4 text-center">
+                        <p class="text-xs text-slate-500">Workshop</p>
+                        <p class="text-2xl font-extrabold"><span class="counter" data-target="2">0</span> Days</p>
+                    </div>
+                    <div class="glass lift rounded-2xl p-4 text-center">
+                        <p class="text-xs text-slate-500">Hiring Network</p>
+                        <p class="text-2xl font-extrabold"><span class="counter" data-target="30">0</span>+</p>
+                    </div>
+                    <div class="glass lift rounded-2xl p-4 text-center">
+                        <p class="text-xs text-slate-500">Outputs</p>
+                        <p class="text-2xl font-extrabold"><span class="counter" data-target="3">0</span>+ Projects</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORKSHOP -->
+    <section id="workshop" class="mx-auto max-w-6xl px-4 py-14">
+        <div class="grid lg:grid-cols-12 gap-8 items-start">
+            <div class="lg:col-span-7" data-aos="fade-up">
+                <h2 class="text-3xl font-extrabold">2-Day AI Workshop (On-Campus)</h2>
+                <p class="mt-2 text-slate-600">
+                    A high-impact, hands-on workshop to introduce AI + GenAI + Agentic AI and shortlist students for the
+                    3-month
+                    batch.
+                </p>
+
+                <div class="mt-6 grid md:grid-cols-2 gap-4">
+                    <div class="glass lift rounded-3xl p-6">
+                        <p class="font-extrabold">Day 1 — Practical AI Foundations</p>
+                        <ul class="mt-3 text-sm text-slate-700 list-disc pl-5 space-y-1">
+                            <li>AI/ML fundamentals (engineering view)</li>
+                            <li>Pipeline: data → model → evaluation → improvement</li>
+                            <li>Guided mini build</li>
+                            <li>GitHub setup + starter repo</li>
+                        </ul>
+                    </div>
+                    <div class="glass lift rounded-3xl p-6">
+                        <p class="font-extrabold">Day 2 — GenAI + Agentic AI</p>
+                        <ul class="mt-3 text-sm text-slate-700 list-disc pl-5 space-y-1">
+                            <li>Prompting + structure + evaluation</li>
+                            <li>Agentic AI: planning + tool use</li>
+                            <li>Team challenge: build + present</li>
+                            <li>Screening + shortlist for 3-month batch</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-6 grid md:grid-cols-2 gap-4">
+                    <div class="glass lift rounded-3xl p-6">
+                        <p class="font-extrabold">Deliverables for College</p>
+                        <ul class="mt-3 text-sm text-slate-700 list-disc pl-5 space-y-1">
+                            <li>Participation certificates</li>
+                            <li>Optional shortlist & workshop report</li>
+                            <li>Workshop photos + summary for documentation</li>
+                        </ul>
+                    </div>
+                    <div class="glass lift rounded-3xl p-6">
+                        <p class="font-extrabold">Deliverables for Students</p>
+                        <ul class="mt-3 text-sm text-slate-700 list-disc pl-5 space-y-1">
+                            <li>Starter kit + roadmap</li>
+                            <li>Mini project repo + guidance</li>
+                            <li>Pathway to the full 3-month program</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5" data-aos="fade-left">
+                <div class="zoom lift rounded-3xl overflow-hidden border border-slate-200 bg-white">
+                    <img class="w-full h-72 object-cover" alt="Workshop in college"
+                        src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1200&q=80">
+                    <div class="p-5">
+                        <p class="font-extrabold">Workshop that feels like industry</p>
+                        <p class="text-sm text-slate-600 mt-1">Hands-on + teams + demos. Students get clarity and
+                            motivation.</p>
+                    </div>
+                </div>
+
+                <div class="mt-4 glass lift rounded-3xl p-6">
+                    <p class="font-extrabold">For Principals / HODs</p>
+                    <p class="text-sm text-slate-600 mt-2">
+                        We can run department-wise (CS/IT/EC/EEE) or combined campus batches. Calendar is aligned to
+                        semester
+                        schedules.
+                    </p>
+                    <div class="mt-4 flex gap-2 flex-wrap">
+                        <a href="#proposal"
+                            class="shine lift px-4 py-2 rounded-2xl bg-slate-900 text-white font-bold text-sm">Request
+                            Proposal</a>
+                        <a href="#meeting"
+                            class="lift px-4 py-2 rounded-2xl border border-slate-300 bg-white font-bold text-sm">Schedule
+                            Meeting</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROGRAM -->
+    <section id="program" class="mx-auto max-w-6xl px-4 py-14">
+        <div class="flex flex-wrap items-end justify-between gap-6" data-aos="fade-up">
+            <div>
+                <h2 class="text-3xl font-extrabold">3-Month Hybrid Program (Offline + Online)</h2>
+                <p class="mt-2 text-slate-600 max-w-2xl">
+                    Designed for engineering students—consistent online learning with practical offline labs and a
+                    capstone live
+                    project phase.
+                </p>
+            </div>
+            <a href="#students"
+                class="shine lift px-4 py-2 rounded-2xl bg-slate-900 text-white font-bold text-sm">Student
+                Registration</a>
+        </div>
+
+        <div class="mt-8 grid lg:grid-cols-2 gap-4">
+            <div class="glass lift rounded-3xl p-6" data-aos="fade-up">
+                <p class="font-extrabold">Model 1 (Recommended): Hybrid Weekly</p>
+                <ul class="mt-3 text-sm text-slate-700 list-disc pl-5 space-y-1">
+                    <li>Online: 2 sessions/week (90 mins)</li>
+                    <li>Offline: 1 lab day every 2 weeks (or 2 days/month)</li>
+                    <li>Assignments + mentor reviews</li>
+                </ul>
+            </div>
+            <div class="glass lift rounded-3xl p-6" data-aos="fade-up" data-aos-delay="80">
+                <p class="font-extrabold">Model 2: Intensive Hybrid</p>
+                <ul class="mt-3 text-sm text-slate-700 list-disc pl-5 space-y-1">
+                    <li>Offline boot days: 4 structured lab days</li>
+                    <li>Online: 12 live classes</li>
+                    <li>Best for fixed-date calendar blocks</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Month-wise (accordion style) -->
+        <div class="mt-6 grid lg:grid-cols-3 gap-4">
+            <details class="glass lift rounded-3xl p-6" open data-aos="fade-up">
+                <summary class="cursor-pointer font-extrabold">Month 1 — Foundation + Engineering Practices</summary>
+                <ul class="mt-3 text-sm text-slate-700 list-disc pl-5 space-y-1">
+                    <li>Python essentials for AI</li>
+                    <li>Git/GitHub workflow</li>
+                    <li>ML fundamentals + evaluation</li>
+                    <li>Mini Project 1: dataset → model → report → demo</li>
+                </ul>
+            </details>
+
+            <details class="glass lift rounded-3xl p-6" data-aos="fade-up" data-aos-delay="80">
+                <summary class="cursor-pointer font-extrabold">Month 2 — GenAI + Building Useful Apps</summary>
+                <ul class="mt-3 text-sm text-slate-700 list-disc pl-5 space-y-1">
+                    <li>Prompt engineering (structured prompts)</li>
+                    <li>LLM workflows (summarize, extract, Q&A)</li>
+                    <li>RAG basics (Q&A from PDFs/resources)</li>
+                    <li>Mini Project 2: GenAI assistant app</li>
+                </ul>
+            </details>
+
+            <details class="glass lift rounded-3xl p-6" data-aos="fade-up" data-aos-delay="160">
+                <summary class="cursor-pointer font-extrabold">Month 3 — Agentic AI + Capstone + Demo Day</summary>
+                <ul class="mt-3 text-sm text-slate-700 list-disc pl-5 space-y-1">
+                    <li>Agentic workflows (planning + tool use)</li>
+                    <li>Demo-ready app building (deployment mindset)</li>
+                    <li>Capstone: office live project + presentation</li>
+                </ul>
+            </details>
+        </div>
+    </section>
+
+    <!-- PROJECT TRACKS -->
+    <section id="projects" class="mx-auto max-w-6xl px-4 py-14">
+        <div data-aos="fade-up">
+            <h2 class="text-3xl font-extrabold">Project Tracks (Students Choose 1)</h2>
+            <p class="mt-2 text-slate-600 max-w-2xl">
+                Tracks keep students motivated and aligned with job roles. Every team submits a demo + GitHub +
+                documentation +
+                final presentation.
+            </p>
+        </div>
+
+        <div class="mt-8 grid md:grid-cols-2 gap-4">
+            <div class="zoom lift rounded-3xl overflow-hidden border border-slate-200 bg-white" data-aos="zoom-in">
+                <img class="w-full h-52 object-cover" alt="Computer vision track"
+                    src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80">
+                <div class="p-6">
+                    <p class="font-extrabold">Track A — Computer Vision (AI Cameras)</p>
+                    <p class="text-sm text-slate-600 mt-2">Vision-based monitoring prototypes + real-time alert
+                        concepts.</p>
+                </div>
+            </div>
+
+            <div class="zoom lift rounded-3xl overflow-hidden border border-slate-200 bg-white" data-aos="zoom-in"
+                data-aos-delay="60">
+                <img class="w-full h-52 object-cover" alt="GenAI track"
+                    src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80">
+                <div class="p-6">
+                    <p class="font-extrabold">Track B — GenAI + RAG Applications</p>
+                    <p class="text-sm text-slate-600 mt-2">College/department helpdesk bots, document Q&A assistants.
+                    </p>
+                </div>
+            </div>
+
+            <div class="zoom lift rounded-3xl overflow-hidden border border-slate-200 bg-white" data-aos="zoom-in"
+                data-aos-delay="120">
+                <img class="w-full h-52 object-cover" alt="Agentic AI track"
+                    src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=1200&q=80">
+                <div class="p-6">
+                    <p class="font-extrabold">Track C — Agentic AI Automation</p>
+                    <p class="text-sm text-slate-600 mt-2">Tool-calling workflows like job finding + approval-based
+                        outreach
+                        assistants.</p>
+                </div>
+            </div>
+
+            <div class="zoom lift rounded-3xl overflow-hidden border border-slate-200 bg-white" data-aos="zoom-in"
+                data-aos-delay="180">
+                <img class="w-full h-52 object-cover" alt="Analytics track"
+                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80">
+                <div class="p-6">
+                    <p class="font-extrabold">Track D — Analytics + Dashboards</p>
+                    <p class="text-sm text-slate-600 mt-2">KPI dashboards + reporting + insights from model outputs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY (more images) -->
+    <section id="gallery" class="mx-auto max-w-6xl px-4 py-14">
+        <div class="flex items-end justify-between gap-6 flex-wrap" data-aos="fade-up">
+            <div>
+                <h2 class="text-3xl font-extrabold">Gallery</h2>
+                <p class="mt-2 text-slate-600">Add your workshop photos, lab sessions, office project training, demo
+                    days.</p>
+            </div>
+            <a href="#meeting"
+                class="lift px-4 py-2 rounded-2xl border border-slate-300 bg-white font-bold text-sm">Invite a
+                Workshop</a>
+        </div>
+
+        <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+            <!-- 8 images -->
+            <div class="zoom lift rounded-3xl overflow-hidden border border-slate-200 bg-white" data-aos="fade-up">
+                <img class="w-full h-44 md:h-52 object-cover" alt="Gallery 1"
+                    src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80">
+            </div>
+            <div class="zoom lift rounded-3xl overflow-hidden border border-slate-200 bg-white" data-aos="fade-up"
+                data-aos-delay="60">
+                <img class="w-full h-44 md:h-52 object-cover" alt="Gallery 2"
+                    src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1200&q=80">
+            </div>
+            <div class="zoom lift rounded-3xl overflow-hidden border border-slate-200 bg-white" data-aos="fade-up"
+                data-aos-delay="120">
+                <img class="w-full h-44 md:h-52 object-cover" alt="Gallery 3"
+                    src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=1200&q=80">
+            </div>
+            <div class="zoom lift rounded-3xl overflow-hidden border border-slate-200 bg-white" data-aos="fade-up"
+                data-aos-delay="180">
+                <img class="w-full h-44 md:h-52 object-cover" alt="Gallery 4"
+                    src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80">
+            </div>
+            <div class="zoom lift rounded-3xl overflow-hidden border border-slate-200 bg-white" data-aos="fade-up">
+                <img class="w-full h-44 md:h-52 object-cover" alt="Gallery 5"
+                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80">
+            </div>
+            <div class="zoom lift rounded-3xl overflow-hidden border border-slate-200 bg-white" data-aos="fade-up"
+                data-aos-delay="60">
+                <img class="w-full h-44 md:h-52 object-cover" alt="Gallery 6"
+                    src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80">
+            </div>
+            <div class="zoom lift rounded-3xl overflow-hidden border border-slate-200 bg-white" data-aos="fade-up"
+                data-aos-delay="120">
+                <img class="w-full h-44 md:h-52 object-cover" alt="Gallery 7"
+                    src="https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1200&q=80">
+            </div>
+            <div class="zoom lift rounded-3xl overflow-hidden border border-slate-200 bg-white" data-aos="fade-up"
+                data-aos-delay="180">
+                <img class="w-full h-44 md:h-52 object-cover" alt="Gallery 8"
+                    src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=80">
+            </div>
+        </div>
+    </section>
+
+    <!-- PLACEMENT + CTA -->
+    <section id="meeting" class="mx-auto max-w-6xl px-4 py-14">
+        <div class="rounded-[28px] bg-slate-900 text-white p-8 md:p-10 relative overflow-hidden" data-aos="fade-up">
+            <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-white/10 blur-3xl"></div>
+            <div class="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-white/10 blur-3xl"></div>
+
+            <div class="grid lg:grid-cols-12 gap-8 relative">
+                <div class="lg:col-span-7">
+                    <h2 class="text-3xl font-extrabold">Schedule a Meeting (Principal / HOD / Placement Cell)</h2>
+                    <p class="mt-2 text-white/80 max-w-2xl">
+                        We’ll align the calendar to your semester schedule and share a proposal with workshop plan,
+                        hybrid delivery
+                        model, and deliverables.
+                    </p>
+
+                    <div class="mt-6 flex flex-wrap gap-3">
+                        <!-- Replace these href with real links -->
+                        <a class="shine lift px-5 py-3 rounded-2xl bg-white text-slate-900 font-extrabold"
+                            href="https://wa.me/919744988555?text=Hi%2C%20I%E2%80%99m%20interested%20in%20AI%20courses%20at%20Invendo%20AI%20Academy.">WhatsApp
+                            Us</a>
+                        <a class="lift px-5 py-3 rounded-2xl border border-white/30 font-extrabold"
+                            href="mailto:invendoaiacademy@gmail.com">Email</a>
+                        <a class="lift px-5 py-3 rounded-2xl border border-white/30 font-extrabold"
+                            href="tel:+919744988555">Call</a>
+                    </div>
+
+                    <p class="mt-3 text-xs text-white/70">
+                        Note: Placement assistance is structured and performance-based (portfolio + interview
+                        readiness).
+                    </p>
+                </div>
+
+                <div class="lg:col-span-5">
+                    <div class="bg-white/10 border border-white/15 rounded-3xl p-6">
+                        <p class="font-extrabold">Quick Checklist (What We Need from College)</p>
+                        <ul class="mt-3 text-sm text-white/80 list-disc pl-5 space-y-1">
+                            <li>Seminar hall + projector + audio</li>
+                            <li>Good Wi-Fi / hotspot backup</li>
+                            <li>Faculty coordinator + student rep</li>
+                            <li>Permission for poster + QR registration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STUDENT FORM -->
+    <section id="students" class="mx-auto max-w-6xl px-4 py-14">
+        <div class="grid lg:grid-cols-12 gap-8 items-start">
+            <div class="lg:col-span-5" data-aos="fade-up">
+                <h2 class="text-3xl font-extrabold">Student Registration</h2>
+                <p class="mt-2 text-slate-600">
+                    Register interest for the Invendo AI Campus batch. Choose your preferred project track.
+                </p>
+                <div class="mt-6 zoom lift rounded-3xl overflow-hidden border border-slate-200 bg-white">
+                    <img class="w-full h-64 object-cover" alt="Student registration"
+                        src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80">
+                </div>
+            </div>
+
+            <div class="lg:col-span-7 glass lift rounded-3xl p-6" data-aos="fade-left">
+                <!-- Replace action="#" with your form endpoint -->
+                <form class="grid md:grid-cols-2 gap-4" action="#" method="post">
+                    <input class="px-4 py-3 rounded-2xl border border-slate-300 bg-white" placeholder="Full Name"
+                        required>
+                    <input class="px-4 py-3 rounded-2xl border border-slate-300 bg-white" placeholder="Phone / WhatsApp"
+                        required>
+                    <input class="px-4 py-3 rounded-2xl border border-slate-300 bg-white" placeholder="Email" required>
+                    <input class="px-4 py-3 rounded-2xl border border-slate-300 bg-white"
+                        placeholder="College & Department" required>
+                    <input class="px-4 py-3 rounded-2xl border border-slate-300 bg-white"
+                        placeholder="Year (2nd/3rd/4th)" required>
+
+                    <select class="px-4 py-3 rounded-2xl border border-slate-300 bg-white">
+                        <option>Preferred Track</option>
+                        <option>Computer Vision (AI Cameras)</option>
+                        <option>GenAI + RAG</option>
+                        <option>Agentic AI Automation</option>
+                        <option>Analytics + Dashboards</option>
+                    </select>
+
+                    <select class="px-4 py-3 rounded-2xl border border-slate-300 bg-white md:col-span-2">
+                        <option>Coding Level</option>
+                        <option>Beginner</option>
+                        <option>Intermediate</option>
+                        <option>Advanced</option>
+                    </select>
+
+                    <textarea class="px-4 py-3 rounded-2xl border border-slate-300 bg-white md:col-span-2" rows="3"
+                        placeholder="Why do you want to join? (1–2 lines)"></textarea>
+
+                    <button
+                        class="shine lift px-4 py-3 rounded-2xl bg-slate-900 text-white font-extrabold md:col-span-2">
+                        Submit Registration
+                    </button>
+                    <p class="text-xs text-slate-500 md:col-span-2">We’ll contact you with workshop / batch details and
+                        schedule.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="mx-auto max-w-6xl px-4 py-14">
+        <div data-aos="fade-up">
+            <h2 class="text-3xl font-extrabold">FAQ</h2>
+            <p class="mt-2 text-slate-600">Clear answers for principals, faculty, and students.</p>
+        </div>
+
+        <div class="mt-8 grid lg:grid-cols-2 gap-4">
+            <details class="glass lift rounded-3xl p-6" open data-aos="fade-up">
+                <summary class="cursor-pointer font-extrabold">Is it suitable for beginners?</summary>
+                <p class="mt-2 text-sm text-slate-700">Yes. We start from fundamentals and move quickly into building
+                    with
+                    mentorship.</p>
+            </details>
+
+            <details class="glass lift rounded-3xl p-6" data-aos="fade-up" data-aos-delay="60">
+                <summary class="cursor-pointer font-extrabold">Will this affect regular classes?</summary>
+                <p class="mt-2 text-sm text-slate-700">No. The hybrid calendar is designed around college schedules and
+                    exam
+                    periods.</p>
+            </details>
+
+            <details class="glass lift rounded-3xl p-6" data-aos="fade-up" data-aos-delay="120">
+                <summary class="cursor-pointer font-extrabold">What is “office live project training”?</summary>
+                <p class="mt-2 text-sm text-slate-700">Students work in teams with milestones, mentor reviews,
+                    documentation,
+                    and a demo-driven approach.</p>
+            </details>
+
+            <details class="glass lift rounded-3xl p-6" data-aos="fade-up" data-aos-delay="180">
+                <summary class="cursor-pointer font-extrabold">Do you guarantee placement?</summary>
+                <p class="mt-2 text-sm text-slate-700">We provide structured placement assistance. Outcomes depend on
+                    performance, portfolio, and interview readiness.</p>
+            </details>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-200 bg-white/70">
+        <div class="mx-auto max-w-6xl px-4 py-10 grid md:grid-cols-3 gap-8">
+            <div>
+                <p class="font-extrabold">Invendo AI Campus</p>
+                <p class="text-sm text-slate-600 mt-2">Invendo AI Academy • Kadavanthara, Kochi</p>
+                <p class="text-xs text-slate-500 mt-3">© <span id="year"></span> Invendo AI Academy. All rights
+                    reserved.</p>
+            </div>
+            <div>
+                <p class="font-extrabold">Quick Links</p>
+                <div class="mt-3 grid gap-2 text-sm">
+                    <a class="hover:underline" href="#proposal">Request Proposal</a>
+                    <a class="hover:underline" href="#workshop">Workshop</a>
+                    <a class="hover:underline" href="#program">3-Month Program</a>
+                    <a class="hover:underline" href="#students">Student Registration</a>
+                </div>
+            </div>
+            <div>
+                <p class="font-extrabold">Contact</p>
+                <p class="text-sm text-slate-600 mt-2">Add your phone, WhatsApp, email, and office address here.</p>
+                <div class="mt-4 flex gap-2 flex-wrap">
+                    <a class="lift px-4 py-2 rounded-2xl border border-slate-300 bg-white font-bold text-sm"
+                        href="https://wa.me/919744988555?text=Hi%2C%20I%E2%80%99m%20interested%20in%20AI%20courses%20at%20Invendo%20AI%20Academy."
+                        target="_blank" rel="noopener noreferrer">
+                        WhatsApp
+                    </a>
+                    <a class="lift px-4 py-2 rounded-2xl border border-slate-300 bg-white font-bold text-sm"
+                        href="#">Email</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile sticky CTA -->
+    <div
+        class="md:hidden fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur border-t border-slate-200 p-3 flex gap-2 z-50">
+        <a href="#proposal"
+            class="shine lift flex-1 text-center px-4 py-3 rounded-2xl bg-slate-900 text-white font-extrabold">Proposal</a>
+        <a href="#students"
+            class="lift flex-1 text-center px-4 py-3 rounded-2xl border border-slate-300 bg-white font-extrabold">Register</a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        // AOS init (scroll animations)
+        AOS.init({ once: true, duration: 700, easing: "ease-out-cubic", offset: 60 });
+
+        // Remove loader after page load
+        window.addEventListener("load", () => {
+            const loader = document.getElementById("loader");
+
+            // Keep loader visible for 2.5 seconds
+            setTimeout(() => {
+                loader.style.transition = "opacity 0.6s ease";
+                loader.style.opacity = "0";
+
+                // Remove after fade completes
+                setTimeout(() => {
+                    loader.remove();
+                }, 600);
+
+            }, 500); // 500ms = 0.5 second
+        });
+
+        // Year
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Animated counters (simple)
+        const counters = document.querySelectorAll(".counter");
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+                const target = Number(el.getAttribute("data-target") || "0");
+                let cur = 0;
+                const step = Math.max(1, Math.round(target / 40));
+                const t = setInterval(() => {
+                    cur += step;
+                    if (cur >= target) { cur = target; clearInterval(t); }
+                    el.textContent = cur;
+                }, 24);
+                counterObserver.unobserve(el);
+            });
+        }, { threshold: 0.4 });
+
+        counters.forEach(c => counterObserver.observe(c));
+    </script>
+</body>
+
+</html>
